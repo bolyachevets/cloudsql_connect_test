@@ -26,7 +26,7 @@ def cloudsql_db_connect():
         # Retrieve connection details from environment variables
         instance_connection_name = os.environ['DB_INSTANCE_CONNECTION_NAME']  # e.g., "project:region:instance"
         username = os.environ['DB_USER'] # https://github.com/GoogleCloudPlatform/cloud-sql-python-connector?tab=readme-ov-file#automatic-iam-database-authentication
-        password = os.environ['DB_PASSWORD'] # # if running authenticating of gcp via service account key, can use service account name instead of user/password combo
+        password = os.environ['DB_PASSWORD'] # if running authenticating of gcp via service account key, can use service account name instead of user/password combo
         dbname = os.environ['DB_DBNAME']
 
         connection = connector.connect(
@@ -35,7 +35,7 @@ def cloudsql_db_connect():
             db=dbname,
             user=username,
             # password=password,
-            enable_iam_auth=True # will also need this enabled for running outside gcp
+            enable_iam_auth=True, # will also need this enabled for running outside gcp
             ip_type='public', # if running in GCP, this should be private
         )
 
